@@ -1,0 +1,56 @@
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link rel="stylesheet" href="../style.css">
+      <title>CRUD-Application</title>
+   </head>
+
+   <body>
+      <nav class="navbar navbar-light bg-light shadow p-3 mb-5">
+         <div class="navbar-brand text-center text-muted">
+             <h5>Yoobee</h5>
+             <h6>Web&UX Community Portfolio</h6>
+         </div>
+         <div class="my-2 my-sm-0 p-2">
+               <a class="btn btn-outline-dark" href="/login">Login</a>
+         </div>
+      </nav>
+      
+      <!--FORM-->
+      <div class="container bg-dark radius">
+         <form action="/register" method="POST" class="m-5 p-5">
+            <div class="form-label-group">
+               <label class="text-white" for="username">Username</label>
+               <input type="text" id="username" class="form-control mb-5" name="username" required autofocus>
+            </div>
+            <div class="form-label-group">
+               <label class="text-white" for="email">Email</label>
+               <input type="text" id="email" class="form-control mb-5" name="email" required autofocus>
+            </div>
+   
+            <div class="form-label-group">
+               <label class="text-white" for="password">Password</label>
+               <input type="password" id="password" class="form-control mb-5" name="password" required>
+            </div>
+            <div class="d-flex justify-content-center" >
+               <button class="btn bg-light submit-btn col-2 m-5 justify-content-center">Sing up</button>
+            </div>
+            <div id="Error" class="col-12"></div>
+          </form>
+      </div>
+
+
+      <!-- Footer -->
+      <footer class="blog-footer bg-light">
+         <p class="text-center text-muted"> Yoobee Formative Project | Natalia Ramirez © 2021</p> 
+      </footer>
+         
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+   </body>
+</html>
+
+ 
