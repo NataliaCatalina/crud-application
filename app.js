@@ -1,25 +1,33 @@
+//NPM packages
 const express  =  require('express');
-const app = express();
 const mongoose =  require("mongoose");
 const passport =  require("passport");
 const bodyParser =  require("body-parser");
+const twig = require('twig');
+ // Declaring our app
+const app = express();
+
 // we're calling in the mongoose schema user
 const User = require("./models/user");
 const Post = require("./models/post");
-app.use(express.static(__dirname + '/public'));
+
 //we're setting up the strategy to provide security
 const LocalStrategy =  require("passport-local");
 
 
 const passportLocalMongoose =  require("passport-local-mongoose"); ////simplifies the integration between Mongoose and Passport for local authentication
-const twig = require('twig');
 
-// views
+
+// set the view engine
 app.set('view engine', 'html');
 app.engine('html', twig.__express);
 app.set('views','views');
 
+// declease a variable which stores our Mongo database URL
 const mongourl = 'mongodb+srv://test:Password@cluster0.7bulh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+
+//make the public accessible to our backend application (images,styling)
+app.use(express.static(__dirname + '/public'));
 
 
 mongoose.connect(mongourl, { useUnifiedTopology: true });
@@ -43,7 +51,6 @@ app.use(passport.session());
 
 // start our server
 const port = 3000;
-
 app.listen(port ,function (err) {
     if(err){
         console.log(err);
@@ -53,20 +60,22 @@ app.listen(port ,function (err) {
 });
 
 // get our views set up
-app.get("/", (req,res) =>{
-    res.render("home", { user: req.user })
-})
+// app.get("/", (req,res) =>{
+//     res.render("home", { user: req.user })
+// })
 app.get("/login", (req,res) =>{
     res.render("login")
 })
 app.get("/register", (req,res) =>{
     res.render("register")
 })
+app.get("/edit", (req,res) =>{
+    res.render("edit")
+})
 
 
 
-// set up the functionality for registering a new user
-
+// REGISTER A NEW USER
 app.post("/register",(req,res)=>{ 
     User.register(new User({            //passport-local-mongoose function to register a new user
     	username: req.body.username,
@@ -84,7 +93,7 @@ app.post("/register",(req,res)=>{
 
 });
 
-// adding a comment
+// ADDING COMMENTS
 app.post('/dashboard', (req, res) => {
     new Post({
         title:req.body.title,
@@ -102,9 +111,8 @@ app.post('/dashboard', (req, res) => {
     });
 });
 
-//display comments 
-
-app.get('/dashboard', (req, res) => {
+// DISPLAY COMMENTS
+app.get('/dashboard', isLoggedIn, (req, res) => {
     // FETCH ALL POSTS FROM DATABASE
     Post.find()
     // sort by most recent
@@ -113,8 +121,8 @@ app.get('/dashboard', (req, res) => {
         if(result){
             // RENDERING HOME VIEW WITH ALL POSTS
             res.render('dashboard',{
-                allpost:result
-
+                allpost:result,
+                user: req.user
             });
         }
     })
@@ -123,32 +131,93 @@ app.get('/dashboard', (req, res) => {
     }); 
 });
 
+// app.get("/dashboard", isLoggedIn,(req,res) =>{
+//     console.log(req)
+//     res.render('dashboard.html', { user: req.user })
+//    })
 
-// delete func
+
+
+
+app.get('/', (req, res) => {
+    // FETCH ALL POSTS FROM DATABASE
+    console.log('return post')
+    Post.find()
+    // sort by most recent
+    .sort({createdAt: 'descending'})
+    .then(result => {
+        if(result){
+            // RENDERING HOME VIEW WITH ALL POSTS
+            res.render('home',{
+                allpost:result
+            });
+        }
+    })
+    .catch(err => {
+        if (err) throw err;
+    }); 
+});
+
+// DELETE COMMENTS
 app.get('/delete/:id', (req, res) => {
-    
     Post.findByIdAndDelete(req.params.id)
-    
     .then(result => {
         res.redirect('/dashboard');
     })
-
     .catch(err => {
         console.log(err);
         res.redirect('/dashboard');
     })
 });
 
-// set up the functionality for logging in an existing user
+// UPDATE POST
+app.get('/edit/:id', (req, res) => {
+    Post.findById(req.params.id)
+    .then(result => {
+        if(result){
+            res.render('edit',{
+                post:result
+            });
+        }
+        else{
+            res.redirect('/');
+        }
+    })
+    .catch(err => {
+        res.redirect('/');
+    });
+});
+// UPDATE POST
+app.post('/edit/:id', (req, res) => {
+    Post.findById(req.params.id)
+    .then(result => {
+        if(result){
+            result.title = req.body.title;
+            result.content = req.body.content;
+            result.author_name = req.body.author;
+            return result.save();
+        }
+        else{
+            console.log(err);
+            res.redirect('/');
+        }
+    })
+    .then(update => {
+        res.redirect('/dashboard');
+    })
+    .catch(err => {
+        res.redirect('/');
+    });
+});
 
+// set up the functionality for logging in an existing user
 app.post("/login", passport.authenticate("local",{
         successRedirect:"/dashboard",
         failureRedirect:"/login"
     })
 );
 
-// logout functionality 
-
+// LOGOUT 
 app.get("/logout",(req,res)=>{  // logout function
     req.logout();
     res.redirect("/");
@@ -160,8 +229,4 @@ function isLoggedIn(req, res, next) {
             res.redirect('/');     
 }
 
-// stop users from seeing the dashboard if they haven't logged in
-app.get("/dashboard", isLoggedIn,(req,res) =>{
-	res.render('dashboard.html', { user: req.user })
-})
 

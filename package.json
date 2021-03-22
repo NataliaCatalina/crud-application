@@ -19,5 +19,13 @@
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.1.0",
     "twig": "^1.15.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NataliaCatalina/crud-application.git"
+  },
+  "bugs": {
+    "url": "https://github.com/NataliaCatalina/crud-application/issues"
+  },
+  "homepage": "https://github.com/NataliaCatalina/crud-application#readme"
 }
