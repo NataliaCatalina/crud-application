@@ -9,9 +9,17 @@
     border-radius: 10px;
 }
 
+
+.image-card {
+    width: 60%; 
+    height: auto;
+}
+
 .container-foote {
     padding-top: 60px;
 }
+
+
 
 .blog-footer {
     padding: 2.5rem 0;

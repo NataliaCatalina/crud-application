@@ -9,7 +9,7 @@
     <body>
 
         <!-- NAV -->
-        <nav class="navbar navbar-light bg-light shadow p-3 mb-5">
+        <nav class="navbar navbar-light bg-light ">
             <div class="navbar-brand text-center text-muted">
                 <a class="btn" href="/">
                     <h5>Yoobee</h5>
@@ -31,8 +31,8 @@
                 <div class="col">
                     <div class="card flex-md-row mb-4 box-shadow ">
                         <div class="card-body d-flex flex-column align-items-start">
-                            <div class="container m-5">
-                                <h3 class="mb-3 display-1"><span class="post_title">{{post.title |e}}</span></h3>
+                            <div class="container m-5 ">
+                                <h2 class="mb-3"><span class="post_title">{{post.title |e}}</span></h2>
                                 <span class="mb-3 post_date text-muted">Posted {{post.createdAt | date("d M, Y")}}</span>
                                 <div class="mb-3 card-text mb-auto font-weight-bold">
                                     <span class="post_comment">{{post.content |e}}</span>
@@ -40,7 +40,7 @@
                                 <span class="post_author"> By {{post.author_name |e}}</span> 
                             </div>
                         </div>
-                        <img class="card-img-right img-fluid flex-auto d-none d-md-block" src="{{post.image_url |e}}" alt="art image" style="width: 60%; height: auto">
+                        <img class="card-img-right img-fluid flex-auto image-card d-md-block" src="{{post.image_url |e}}" alt="art image">
                     </div>
                 </div>
             </div>
@@ -48,10 +48,10 @@
             <div class="row">
                 <div class="col">
                     <div class="card flex-md-row mb-4 box-shadow ">
-                        <img class="card-img-right img-fluid flex-auto d-none d-md-block" src="{{post.image_url |e}}" alt="art image" style="width: 60%; height: auto">
+                        <img class="card-img-right img-fluid flex-auto image-card d-md-block" src="{{post.image_url |e}}" alt="art image">
                         <div class="card-body d-flex flex-column align-items-start">
                             <div class="container m-5">
-                                <h3 class="mb-3 display-1"><span class="post_title">{{post.title |e}}</span></h3>
+                                <h2 class="mb-3"><span class="post_title">{{post.title |e}}</span></h2>
                                 <span class="mb-3 post_date text-muted">Posted {{post.createdAt | date("d M, Y")}}</span>
                                 <div class="mb-3 card-text mb-auto font-weight-bold">
                                     <span class="post_comment">{{post.content |e}}</span>
@@ -65,6 +65,48 @@
             {% endif %}    
             {% endfor %}
         </div>
+        <!--Display Cards-->  
+        <!-- <div class="container-fluid">
+            {% for post in allpost %}
+            {% if loop.index is even %} 
+            <div class="row ">
+                <div class="col">
+                    <div class="card flex-md-row mb-4 box-shadow ">
+                        <div class="card-body d-flex flex-column align-items-start">
+                            <div class="container m-5">
+                                <h2 class="mb-3"><span class="post_title">{{post.title |e}}</span></h2>
+                                <span class="mb-3 post_date text-muted">Posted {{post.createdAt | date("d M, Y")}}</span>
+                                <div class="mb-3 card-text mb-auto font-weight-bold">
+                                    <span class="post_comment">{{post.content |e}}</span>
+                                </div>
+                                <span class="post_author"> By {{post.author_name |e}}</span> 
+                            </div>
+                        </div>
+                        <img class="card-img-right img-fluid flex-auto d-none d-md-block image-card" src="{{post.image_url |e}}" alt="art image">
+                    </div>
+                </div>
+            </div>
+            {% else %} 
+            <div class="row">
+                <div class="col">
+                    <div class="card flex-md-row mb-4 box-shadow ">
+                        <img class="card-img-right img-fluid flex-auto d-none d-md-block image-card" src="{{post.image_url |e}}" alt="art image">
+                        <div class="card-body d-flex flex-column align-items-start">
+                            <div class="container m-5">
+                                <h2 class="mb-3"><span class="post_title">{{post.title |e}}</span></h2>
+                                <span class="mb-3 post_date text-muted">Posted {{post.createdAt | date("d M, Y")}}</span>
+                                <div class="mb-3 card-text mb-auto font-weight-bold">
+                                    <span class="post_comment">{{post.content |e}}</span>
+                                </div>
+                                <span class="post_author"> By {{post.author_name |e}}</span> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}    
+            {% endfor %}
+        </div> -->
   
         <!-- Footer -->
         <footer class="blog-footer bg-light">

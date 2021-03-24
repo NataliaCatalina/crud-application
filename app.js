@@ -59,10 +59,8 @@ app.listen(port ,function (err) {
     } 
 });
 
-// get our views set up
-// app.get("/", (req,res) =>{
-//     res.render("home", { user: req.user })
-// })
+
+//
 app.get("/login", (req,res) =>{
     res.render("login")
 })
@@ -130,13 +128,6 @@ app.get('/dashboard', isLoggedIn, (req, res) => {
         if (err) throw err;
     }); 
 });
-
-// app.get("/dashboard", isLoggedIn,(req,res) =>{
-//     console.log(req)
-//     res.render('dashboard.html', { user: req.user })
-//    })
-
-
 
 
 app.get('/', (req, res) => {
