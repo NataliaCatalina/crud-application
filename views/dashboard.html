@@ -26,8 +26,6 @@
             </div>
         </nav>
                 
-
-
         <!--FORM-->
         <div class="container bg-dark radius">
             <form  action="" method="POST" class="m-5 p-5">
@@ -71,7 +69,7 @@
                             <div class="container m-5">
                                 <h2 class="mb-3"><span class="post_title">{{post.title |e}}</span></h2>
                                 <span class="mb-3 post_date text-muted">Posted {{post.createdAt | date("d M, Y")}}</span>
-                                <div class="mb-3 card-text mb-auto font-weight-bold">
+                                <div class="mb-3 card-text mb-auto font-weight-bold mr-3">
                                     <span class="post_comment">{{post.content |e}}</span>
                                 </div>
                                 <span class="post_author"> By {{post.author_name |e}}</span> 
@@ -94,7 +92,7 @@
                             <div class="container m-5">
                                 <h2 class="mb-3"><span class="post_title">{{post.title |e}}</span></h2>
                                 <span class="mb-3 post_date text-muted">Posted {{post.createdAt | date("d M, Y")}}</span>
-                                <div class="mb-3 card-text mb-auto font-weight-bold">
+                                <div class="mb-3 card-text mb-auto font-weight-bold ml-3">
                                     <span class="post_comment">{{post.content |e}}</span>
                                 </div>
                                 <span class="post_author"> By {{post.author_name |e}}</span> 
@@ -107,15 +105,11 @@
             {% endfor %}
         </div>
         
-
- 
-
         <!-- Footer -->
         <footer class="blog-footer bg-light">
             <p class="text-center text-muted"> Yoobee Formative Project | Natalia Ramirez © 2021</p> 
         </footer>
 
-    
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
